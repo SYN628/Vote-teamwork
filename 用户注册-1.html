@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新用户注册</title>
+</head>
+<style>
+	body{
+        background-image: url(landscape.jpg);
+        background-position: center center;
+        background-size: cover;
+        background: rgb(12, 140, 209) url(./images/注册背景.jpg) no-repeat 0 0;
+    }
+    .wel{
+        text-align: center;
+        background-color: aquamarine;
+    }
+	.demo{
+        padding: 50px;
+        height: 80%;
+        width: 40%;
+        margin: 0px auto;
+        background-color:azure;
+    }
+	.div{
+        width: 300px;
+        margin: 0 auto; 
+        padding: 15px;
+    }
+	p{
+        color: red;
+        float:left;
+        margin-left: 20%;
+    }
+</style>
+<body>
+    <div class="wel" style="font-size: 20px;color:rgb(31, 168, 222);">欢迎加入我们</div>
+    <div class="demo">
+        <div class="div" style="font-size: 20px;color:rgb(222, 132, 31);">请注册个人信息:</div>
+        <!-- 用户名 -->
+        <p>*</p>
+        <div class="div">注册用户名：<input id="user" type="text"  class="inputs" onchange="checkUser()"/>
+            <div id="userId" class="red" style="color: red;"></div>
+        </div>
+        <!-- 密码 -->
+        <p>*</p>
+        <div class="div">请输入密码：<input id="pwd" type="password"  class="inputs" onchange="checkPwd()"/>
+            <div id="pwdId" class="red" style="color: red;"></div>
+        </div>
+        <!-- 确认密码 -->
+        <p>*</p>
+        <div class="div">请确认密码：<input id="repwd" type="password"  class="inputs" onchange="checkRepwd()"/>
+            <div id="repwdId" class="red" style="color: red;"></div>
+        </div>
+        <!-- 按钮 -->
+        <div class="div">
+            <button type="submit">注册</button>
+            <button type="reset">重置</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+function checkUser(){
+	var user=document.getElementById("user").value;
+	var reg=/^\w{4,12}$/;
+	if (!reg.test(user)){
+		document.getElementById("userId").innerHTML="由字母、数字和下划线组成的4-16位字符";
+		return false;}
+	document.getElementById("userId").innerHTML="输入成功";
+	return true;
+}
+function checkPwd(){
+	var pwd=document.getElementById("pwd").value;
+	var reg=/^[a-zA-Z0-9]{4,12}$/;
+	var reg1=/^\d{4,12}$/;
+	if (!reg.test(pwd)){
+		document.getElementById("pwdId").innerHTML="密码长度为6-12个字符";
+		return false;}
+	if (reg1.test(pwd)){
+		document.getElementById("pwdId").innerHTML="密码设置太简单";
+		return false;}
+	document.getElementById("pwdId").innerHTML="输入成功";
+	return true;
+}
+function checkRepwd(){
+	var repwd=document.getElementById("repwd").value;
+	var pwd=document.getElementById("pwd").value;
+	if (pwd!=repwd){
+		document.getElementById("repwdId").innerHTML="两次输入的密码不一致";
+		return false;}
+	document.getElementById("repwdId").innerHTML="输入成功";
+	return true;
+}
+function test(){
+    if (!checkUser()||!checkPwd()||!checkRepwd()){
+        alert("请将注册信息填写完整!");
+        return false;
+    }
+    return true;
+}
+</script>
